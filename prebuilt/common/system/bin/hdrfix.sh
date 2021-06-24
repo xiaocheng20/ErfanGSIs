@@ -43,21 +43,7 @@ PATCH()
     start surfaceflinger
 }
 
-loop_times=60
-i=0
-while true; do
-    HDRLINE=$(logcat -d | grep isHDRLayer | head -n 1)
-    if [ -z "$HDRLINE" ]; then
-        i=$(($i+1))
-        if [ $i -gt $loop_times ]; then
-            setprop isHDRLayer.patched 1
-            exit
-        fi
-        sleep 1
-        continue
-    fi
-    break
-done
+
 
 LIBSURFACEFLINGER=$(echo $HDRLINE | grep -o "/system/lib.*/libsurfaceflinger.so")
 HDROFFSET=$(echo $HDRLINE | sed "s|/system/lib.*/libsurfaceflinger.so.*||" | sed $'s/./&\\\n/g' | sed -ne $'x;H;${x;s/\\n//g;p;}' | awk '{ print $1 }' | sed $'s/./&\\\n/g' | sed -ne $'x;H;${x;s/\\n//g;p;}' | sed 's/^0*//')
