@@ -43,7 +43,7 @@ PATCH()
     start surfaceflinger
 }
 
-
+done
 
 LIBSURFACEFLINGER=$(echo $HDRLINE | grep -o "/system/lib.*/libsurfaceflinger.so")
 HDROFFSET=$(echo $HDRLINE | sed "s|/system/lib.*/libsurfaceflinger.so.*||" | sed $'s/./&\\\n/g' | sed -ne $'x;H;${x;s/\\n//g;p;}' | awk '{ print $1 }' | sed $'s/./&\\\n/g' | sed -ne $'x;H;${x;s/\\n//g;p;}' | sed 's/^0*//')
