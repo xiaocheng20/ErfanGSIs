@@ -83,10 +83,10 @@ fi
 sed -i "s/ro.adb.secure=1/ro.adb.secure=0/g" $1/etc/prop.default
 sed -i "s/ro.adb.secure=1/ro.adb.secure=0/g" $1/build.prop
 # cleanup build prop
-if grep -q ADDITIONAL_BUILD_PROPERTIES $1/build.prop; then
-    $thispath/../../scripts/propcleanner.sh $1/build.prop > $1/../../build.prop
-    cp -fpr $1/../../build.prop $1/
-fi
+#if grep -q ADDITIONAL_BUILD_PROPERTIES $1/build.prop; then
+#    $thispath/../../scripts/propcleanner.sh $1/build.prop > $1/../../build.prop
+#    cp -fpr $1/../../build.prop $1/
+#fi
 if grep -q post_process_props $1/product/etc/build.prop; then
     $thispath/../../scripts/propcleannerS.sh $1/product/etc/build.prop > $1/../../build.prop
     cp -fpr $1/../../build.prop $1/product/etc/
